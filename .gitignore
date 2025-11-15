@@ -1,2 +1,4 @@
-visualization.pbix
 .env
+
+src/visualization.pbix
+src/model_metrics.csv
