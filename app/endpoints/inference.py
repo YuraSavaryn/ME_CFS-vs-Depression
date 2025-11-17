@@ -10,6 +10,12 @@ router_inference = APIRouter(prefix="/inference", tags=["inference"])
 
 model = joblib.load("models/pipeline_model.pkl")
 
+diagnoses = {
+    0: "Both",
+    1: "Depression",
+    2: "ME/CFS"
+}
+
 
 @router_inference.post('/predict')
 def predict(patient: Patient, db: Session = Depends(database.get_db)):
@@ -21,6 +27,7 @@ def predict(patient: Patient, db: Session = Depends(database.get_db)):
     probabilities = probabilities[0].tolist()
     confidence = max(probabilities)
 
+    patient_data["diagnosis"] = diagnoses[int(pred[0])]
     patient_data["timestamp"] = datetime.now()
     inference_prediction = pd.DataFrame({
         "prediction": pred,
@@ -33,7 +40,7 @@ def predict(patient: Patient, db: Session = Depends(database.get_db)):
     crud.save_inference_data(db, patient_data)
 
     return {
-        "prediction": int(pred[0]),
+        "prediction": diagnoses[int(pred[0])],
         "prediction_confidence": confidence,
         "probabilities": probabilities,
     }

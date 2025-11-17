@@ -88,4 +88,5 @@ class InferenceInputs(Base):
     social_activity_level = Column(String)
     exercise_frequency = Column(String)
     meditation_or_mindfulness = Column(String)
+    diagnosis = Column(String)
     timestamp = Column(DateTime, default=datetime.datetime.now())

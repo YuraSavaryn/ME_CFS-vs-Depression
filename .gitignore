@@ -1,4 +1,7 @@
 .env
 
+.idea/
+venv/
+
 src/visualization.pbix
 src/model_metrics.csv
