@@ -1,8 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
+
 from dotenv import load_dotenv
-from endpoints.training import router_training
-from endpoints.inference import router_inference
+
+from endpoints import training, inference, monitoring
 from database import models
 from database.database import engine
 
@@ -12,8 +13,10 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-app.include_router(router_training)
-app.include_router(router_inference)
+app.include_router(training.router)
+app.include_router(inference.router)
+app.include_router(monitoring.router)
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)

@@ -13,10 +13,10 @@ from datetime import datetime
 import pandas as pd
 import joblib
 
-router_training = APIRouter(prefix="/train", tags=["train ml model"])
+router = APIRouter(prefix="/train", tags=["train ml model"])
 
 
-@router_training.post('/model')
+@router.post('/model')
 def train_model(db: Session = Depends(database.get_db)):
     #import data
     dataset = crud.get_clean_data(db)
@@ -55,7 +55,7 @@ def train_model(db: Session = Depends(database.get_db)):
     return {"score": score_rfc}
 
 
-@router_training.post('/pipeline_model')
+@router.post('/pipeline_model')
 def train_model(db: Session = Depends(database.get_db)):
     #import data
     dataset = crud.get_data(db)
@@ -77,7 +77,5 @@ def train_model(db: Session = Depends(database.get_db)):
 
     #save model to folder
     joblib.dump(inference_pipeline, 'models/pipeline_model.pkl')
-
-    #add predictions to train data in table predictions
 
     return {"score": score_rfc}

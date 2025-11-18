@@ -1,6 +1,6 @@
 import pandas as pd
 from sqlalchemy.orm import Session
-from app.database.models import Data, CleanData
+from app.database.models import Data, CleanData, InferenceInputs
 
 
 def get_data(db: Session):
@@ -11,6 +11,12 @@ def get_data(db: Session):
 
 def get_clean_data(db: Session):
     query = db.query(CleanData)
+
+    return pd.read_sql(query.statement, db.bind)
+
+
+def get_inference_data(db: Session):
+    query = db.query(InferenceInputs)
 
     return pd.read_sql(query.statement, db.bind)
 
