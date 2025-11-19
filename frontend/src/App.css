@@ -1,0 +1,131 @@
+/* 1. Головний контейнер (Картка) */
+.App {
+  max-width: 600px;
+  margin: 40px auto; /* Відступ зверху і центрування */
+  padding: 2rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Якщо екран дуже вузький, прибираємо зайві відступи */
+@media (max-width: 640px) {
+  .App {
+    margin: 20px 10px;
+    padding: 1.5rem;
+  }
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-weight: normal;
+}
+
+/* 2. Контейнер форми */
+.patient-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+/* 3. Група поля (Label + Input) */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #34495e;
+}
+
+/* 4. Стилізація полів вводу */
+input, select {
+  padding: 12px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  color: #2c3e50; /* Явний колір тексту в інпутах */
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* 5. Кнопка */
+button {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: inherit; /* Успадковує шрифт Inter */
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+/* 6. Блок результатів */
+.error-message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  border: 1px solid #ef9a9a;
+}
+
+.result-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.diagnosis-prediction {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  margin: 10px 0;
+}
+
+.diagnosis-confidence {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
